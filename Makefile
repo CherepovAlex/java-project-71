@@ -5,4 +5,4 @@ test:
 	make -C app test
 
 checkstyleMain:
-	make -C app checkstyle
+	make -C app checkstyleMain
