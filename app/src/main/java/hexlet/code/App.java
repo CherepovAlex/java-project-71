@@ -3,6 +3,7 @@ package hexlet.code;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 
+import java.nio.file.Paths;
 import java.util.concurrent.Callable;
 
 @Command(name = "gendiff ", mixinStandardHelpOptions = true, description = "Compares two configuration files and shows a difference.")
@@ -20,14 +21,20 @@ public class App implements Callable<Integer> {
     )
     private String format;
 
+    public static String absolutePath(String filepath){
+        return Paths.get(filepath).toAbsolutePath().normalize().toString();
+    }
+
     @Override
     public Integer call() throws Exception {
+        System.out.println(Differ.generate(absolutePath(filepath1), absolutePath(filepath2), format));
         return 0;
     }
 
     public static void main(String... args) {
         int exitCode = new CommandLine(new App()).execute(args);
         System.exit(exitCode);
-    }
 
+
+    }
 }
