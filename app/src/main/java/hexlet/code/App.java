@@ -3,6 +3,7 @@ package hexlet.code;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.Callable;
 
@@ -22,7 +23,8 @@ public class App implements Callable<Integer> {
     private String format;
 
     public static String absolutePath(String filepath){
-        return Paths.get(filepath).toAbsolutePath().normalize().toString();
+        Path path = Paths.get(filepath).toAbsolutePath();
+        return path.toString();
     }
 
     @Override
@@ -34,7 +36,5 @@ public class App implements Callable<Integer> {
     public static void main(String... args) {
         int exitCode = new CommandLine(new App()).execute(args);
         System.exit(exitCode);
-
-
     }
 }

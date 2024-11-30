@@ -9,12 +9,15 @@ import com.fasterxml.jackson.databind.*;
 public class Parser {
 
     public static Map<String, Object> parse (String fileContent, String format) throws IOException {
+        // TODO дописать для других форматов
         ObjectMapper mapper = new ObjectMapper();
-        switch (format) {
-            case "json":
-                return mapper.readValue(fileContent, new TypeReference<Map<String, Object>>() {});
-            default:
-                return Map.of();
-        }
+        return switch (format) {
+            case "json" -> mapper.readValue(fileContent, new TypeReference<Map<String, Object>>() {});
+//            case "yaml":
+//            case "yml":
+//                Yaml yaml = new Yaml();
+//                return yaml.load(fileContent);
+            default -> throw new RuntimeException("Unsupported format");
+        };
     }
 }
