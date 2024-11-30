@@ -7,7 +7,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.Callable;
 
-@Command(name = "gendiff ", mixinStandardHelpOptions = true, description = "Compares two configuration files and shows a difference.")
+@Command(name = "gendiff ", mixinStandardHelpOptions = true, description =
+        "Compares two configuration files and shows a difference.")
 public class App implements Callable<Integer> {
     @CommandLine.Parameters(index = "0", paramLabel = "filepath1", description = "path to first file")
     private String filepath1;
@@ -22,7 +23,7 @@ public class App implements Callable<Integer> {
     )
     private String format;
 
-    public static String absolutePath(String filepath){
+    public static String absolutePath(String filepath) {
         Path path = Paths.get(filepath).toAbsolutePath();
         return path.toString();
     }

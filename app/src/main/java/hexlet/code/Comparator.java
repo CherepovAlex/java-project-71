@@ -1,19 +1,14 @@
 package hexlet.code;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeSet;
+import java.util.HashMap;
 
 public class Comparator {
 
-    public static List<Map<String, Object>> compare (Map<String, Object> fileMap1, Map<String, Object> fileMap2){
-        //[
-        // {                    {                       {                       {
-        // "FIELD": "array"     "FIELD": "follow",      "FIELD": "timeout",     "FIELD": "verbose",
-        // "STATUS": "SAME"     "STATUS": "REMOVED",    "STATUS": "UPDATED",    "STATUS": "ADDED",
-        // OLD_VALUE: [         "OLD_VALUE": false      "NEW_VALUE": 28,        "NEW_VALUE": true
-        // 1,                   },                      "OLD_VALUE: 50          }
-        // 2,                                           },                      ]
-        // ]
-        // },
+    public static List<Map<String, Object>> compare(Map<String, Object> fileMap1, Map<String, Object> fileMap2) {
         var list = new ArrayList<Map<String, Object>>();
         var keys = new TreeSet<>();
         keys.addAll(fileMap1.keySet());
