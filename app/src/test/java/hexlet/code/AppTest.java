@@ -3,8 +3,11 @@ package hexlet.code;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,17 +25,11 @@ class AppTest {
 
     @Test
     @DisplayName("'main' method works correctly")
-    void testMain() {
-        String testString = "{\n" +
-                "  - follow: false\n" +
-                "    host: hexlet.io\n" +
-                "  - proxy: 123.234.53.22\n" +
-                "  - timeout: 50\n" +
-                "  + timeout: 20\n" +
-                "  + verbose: true\n" +
-                "}";
+    void testMain() throws FileNotFoundException {
+        String fileTest = "/AppTestResult.txt";
         App.main("file1.json", "file2.json");
-        assertEquals(testString, output.toString(StandardCharsets.UTF_8).trim());
+        Scanner fileTestScanner = new Scanner(new File(fileTest));
+        assertEquals(fileTestScanner, output.toString(StandardCharsets.UTF_8).trim());
     }
 
     @AfterEach
