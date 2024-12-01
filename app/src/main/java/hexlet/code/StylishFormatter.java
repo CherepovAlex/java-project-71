@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 public class StylishFormatter {
 
     public static String format(List<Map<String, Object>> compareResult) {
-
         String result = compareResult.stream()
                 .map(map -> map.entrySet().stream()
                         .map(entry -> entry.getKey() + ": " + entry.getValue())
@@ -18,5 +17,4 @@ public class StylishFormatter {
 
         return "{\n " + result + "\n}";
     }
-
 }
