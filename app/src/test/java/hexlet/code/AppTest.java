@@ -23,8 +23,16 @@ class AppTest {
     @Test
     @DisplayName("'main' method works correctly")
     void testMain() {
-        App.main(null);
-        assertEquals("Hello, World!", output.toString(StandardCharsets.UTF_8).trim());
+        String testString = "{\n" +
+                "  - follow: false\n" +
+                "    host: hexlet.io\n" +
+                "  - proxy: 123.234.53.22\n" +
+                "  - timeout: 50\n" +
+                "  + timeout: 20\n" +
+                "  + verbose: true\n" +
+                "}";
+        App.main("file1.json", "file2.json");
+        assertEquals(testString, output.toString(StandardCharsets.UTF_8).trim());
     }
 
     @AfterEach
