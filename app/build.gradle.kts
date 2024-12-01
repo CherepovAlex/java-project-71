@@ -1,5 +1,6 @@
 plugins {
     application
+    jacoco
     id("java")
     id("checkstyle")
 }
@@ -24,3 +25,5 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
+
+tasks.jacocoTestReport { reports { xml.required.set(true) } }
