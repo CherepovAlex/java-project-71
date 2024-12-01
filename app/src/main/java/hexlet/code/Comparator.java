@@ -13,21 +13,19 @@ public class Comparator {
         keys.addAll(fileMap1.keySet());
         keys.addAll(fileMap2.keySet());
         for (var key : keys) {
-            boolean fileMap1In = fileMap1.containsKey(key);
-            boolean fileMap2In = fileMap2.containsKey(key);
             boolean file12Equals = fileMap1.get(key) != null && fileMap1.get(key) != null
                     && ((fileMap1.get(key)).equals(fileMap2.get(key)));
-            if (fileMap1In && fileMap2In) {
+            if (fileMap1.containsKey(key) && fileMap2.containsKey(key)) {
                 if (file12Equals) {
                     list.add(Map.of("  " + (String) key, fileMap1.get(key)));
                 } else {
                     list.add(Map.of("- " + (String) key, fileMap1.get(key), "+ " + (String) key, fileMap2.get(key)));
                 }
             }
-            if (fileMap1In && !fileMap2In) {
+            if (fileMap1.containsKey(key) && !fileMap2.containsKey(key)) {
                 list.add(Map.of("- " + (String) key, fileMap1.get(key)));
             }
-            if (!fileMap1In && fileMap2In) {
+            if (!fileMap1.containsKey(key) && fileMap2.containsKey(key)) {
                 list.add(Map.of("+ " + (String) key, fileMap2.get(key)));
             }
         }
