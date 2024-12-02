@@ -26,7 +26,7 @@ class AppTest {
     @Test
     @DisplayName("'main' method works correctly")
     void testMain() throws FileNotFoundException {
-        String fileTest = "/AppTestResult.txt";
+        String fileTest = "/expected_results/AppTestResult.txt";
         App.main("file1.json", "file2.json");
         Scanner fileTestScanner = new Scanner(new File(fileTest));
         assertEquals(fileTestScanner, output.toString(StandardCharsets.UTF_8).trim());
