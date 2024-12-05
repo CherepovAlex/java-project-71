@@ -24,6 +24,7 @@ dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
+    testImplementation("org.skyscreamer:jsonassert:1.5.0")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 

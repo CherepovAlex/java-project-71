@@ -11,10 +11,9 @@ public class StylishFormatter {
                 .map(map -> map.entrySet().stream()
                         .map(entry -> entry.getKey() + ": " + entry.getValue())
                         .collect(Collectors.toList()))
-                .map(list -> list.stream()
+                        .map(list -> list.stream()
                         .collect(Collectors.joining("\n ")))
-                .collect(Collectors.joining("\n "));
-
-        return "{\n " + result + "\n}";
+                        .collect(Collectors.joining("\n "));
+        return "{\n " + result + "\n}" + "\n";
     }
 }

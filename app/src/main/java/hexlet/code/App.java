@@ -24,14 +24,14 @@ public class App implements Callable<Integer> {
     )
     private String format;
 
-    public static String absolutePath(String filepath) {
-        Path path = Paths.get(filepath).toAbsolutePath();
-        return path.toString();
+    public static Path getAbsolutePath(String filepath) {
+        return Paths.get(filepath).toAbsolutePath();
     }
 
     @Override
     public Integer call() throws Exception {
-        System.out.println(Differ.generate(absolutePath(filepath1), absolutePath(filepath2), format));
+        System.out.println(Differ.generate(getAbsolutePath(filepath1).toString(),
+                getAbsolutePath(filepath2).toString(), format));
         return 0;
     }
 

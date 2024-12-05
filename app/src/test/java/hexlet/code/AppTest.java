@@ -1,13 +1,12 @@
 package hexlet.code;
 
+import static hexlet.code.App.getAbsolutePath;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
-import java.util.Scanner;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,6 +17,8 @@ class AppTest {
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream output = new ByteArrayOutputStream();
 
+    private final String expectedResultJson = "/expected_results/AppTestResult.txt";
+
     @BeforeEach
     public void setUp() {
         System.setOut(new PrintStream(output));
@@ -26,10 +27,10 @@ class AppTest {
     @Test
     @DisplayName("'main' method works correctly")
     void testMain() throws FileNotFoundException {
-        String fileTest = "/expected_results/AppTestResult.txt";
-        App.main("file1.json", "file2.json");
-        Scanner fileTestScanner = new Scanner(new File(fileTest));
-        assertEquals(fileTestScanner, output.toString(StandardCharsets.UTF_8).trim());
+        var file1 = getAbsolutePath("file1.json").toString();
+        var file2 = getAbsolutePath("file1.json").toString();
+        App.main(file1, file2);
+        assertEquals(expectedResultJson, output.toString(StandardCharsets.UTF_8).trim());
     }
 
     @AfterEach
