@@ -15,6 +15,6 @@ public class StylishFormatter {
                         .collect(Collectors.toList()).reversed())
                 .map(list -> list.stream()
                         .collect(Collectors.joining("\n ")))
-                .collect(Collectors.joining("\n ")) + "\n}";
+                .collect(Collectors.joining("\n ")) + "\n}" + "\n";
     }
 }
