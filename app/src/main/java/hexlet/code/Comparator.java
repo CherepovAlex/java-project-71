@@ -19,7 +19,7 @@ public class Comparator {
             Boolean fileMap2Include = fileMap2.containsKey(key);
             Boolean file12Equals = null;
             if (fileMap1.get(key) == null || fileMap2.get(key) == null) {
-                file12Equals = (fileMap1.get(key) == fileMap2.get(key)) ? true : false;
+                file12Equals = fileMap1.get(key) == fileMap2.get(key);
             } else {
                 file12Equals = fileMap1.containsKey(key) && fileMap2.containsKey(key)
                         ? (fileMap1.get(key)).equals(fileMap2.get(key)) : null;
