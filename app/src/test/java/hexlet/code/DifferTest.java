@@ -2,7 +2,6 @@ package hexlet.code;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
@@ -36,12 +35,11 @@ public class DifferTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"json", "yaml"})
-    void testGenerateWithJsonOutput() throws Exception {
-        var file1 = getAbsolutePath("file1.json").toString();
-        var file2 = getAbsolutePath("file2.json").toString();
+    public void testGenerateWithJsonOutput(String inputFormat) throws Exception {
+        var file1 = getAbsolutePath("file1." + inputFormat).toString();
+        var file2 = getAbsolutePath("file2." + inputFormat).toString();
 
         String actualResult = Differ.generate(file1, file2, "stylish");
-
         assertEquals(actualResult, sb.toString());
     }
 

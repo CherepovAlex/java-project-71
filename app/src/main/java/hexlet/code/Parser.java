@@ -5,19 +5,19 @@ import java.util.Map;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 
 public class Parser {
 
     public static Map<String, Object> parse(String fileContent, String format) throws IOException {
         // TODO дописать для других форматов
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapperJson = new ObjectMapper();
+        ObjectMapper mapperYaml = new YAMLMapper();
         return switch (format) {
-            case "json" -> mapper.readValue(fileContent, new TypeReference<Map<String, Object>>() {
+            case "json" -> mapperJson.readValue(fileContent, new TypeReference<Map<String, Object>>() {
             });
-//            case "yaml":
-//            case "yml":
-//                Yaml yaml = new Yaml();
-//                return yaml.load(fileContent);
+            case "yaml" -> mapperYaml.readValue(fileContent, new TypeReference<Map<String, Object>>(){
+            });
             default -> throw new RuntimeException("Unsupported format");
         };
     }
