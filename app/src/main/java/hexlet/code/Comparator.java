@@ -1,9 +1,6 @@
 package hexlet.code;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Comparator {
 
@@ -13,19 +10,29 @@ public class Comparator {
         keys.addAll(fileMap1.keySet());
         keys.addAll(fileMap2.keySet());
         for (var key : keys) {
-            if (fileMap1.containsKey(key) && fileMap2.containsKey(key)) {
-                if (fileMap1.get(key) != null && fileMap1.get(key) != null
-                        && ((fileMap1.get(key)).equals(fileMap2.get(key)))) {
-                    list.add(Map.of("  " + (String) key, fileMap1.get(key)));
-                } else {
-                    list.add(Map.of("- " + (String) key, fileMap1.get(key), "+ " + (String) key, fileMap2.get(key)));
-                }
+            var map = new HashMap<String, Object>();
+            Boolean fileMap1In = fileMap1.containsKey(key);
+            Boolean fileMap2In = fileMap2.containsKey(key);
+            Boolean file12Equals = null;
+            if (fileMap1In && fileMap2In) {
+                file12Equals = (fileMap1.get(key)).equals(fileMap2.get(key));
             }
-            if (fileMap1.containsKey(key) && !fileMap2.containsKey(key)) {
-                list.add(Map.of("- " + (String) key, fileMap1.get(key)));
+            if (fileMap1In && fileMap2In && file12Equals) {
+                map.put("  " + (String) key, fileMap1.get(key));
+                list.add(map);
             }
-            if (!fileMap1.containsKey(key) && fileMap2.containsKey(key)) {
-                list.add(Map.of("+ " + (String) key, fileMap2.get(key)));
+            if (fileMap1In && fileMap2In && !file12Equals) {
+                map.put("- " + (String) key, fileMap1.get(key));
+                map.put("+ " + (String) key, fileMap2.get(key));
+                list.add(map);
+            }
+            if (fileMap1In && !fileMap2In) {
+                map.put("- " + (String) key, fileMap1.get(key));
+                list.add(map);
+            }
+            if (!fileMap1In && fileMap2In) {
+                map.put("+ " + (String) key, fileMap2.get(key));
+                list.add(map);
             }
         }
         return list;

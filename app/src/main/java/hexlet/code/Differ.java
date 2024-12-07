@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Differ {
-
+    // оркестратор
     public static String generate(String filepath1, String filepath2, String format) throws IOException {
         String content1 = readFile(filepath1);
         String content2 = readFile(filepath2);
@@ -23,7 +23,7 @@ public class Differ {
 
         return format(compareResult, format);
     }
-
+    //читайем файл и переводим его в большую строку; не нужен отдельный класс
     private static String readFile(String filePath) {
         File file = new File(filePath);
         StringBuilder sb = new StringBuilder();
@@ -37,7 +37,7 @@ public class Differ {
         }
         return sb.toString();
     }
-
+    //формат хранения данных; утилитарный метод; возвращает тип файла - расширение: json, yml, yaml
     private static String getFileType(String filePath) {
         String[] arr = filePath.split("\\.");
         return arr[arr.length - 1];
