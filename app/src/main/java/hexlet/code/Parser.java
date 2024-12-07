@@ -16,7 +16,7 @@ public class Parser {
         return switch (format) {
             case "json" -> mapperJson.readValue(fileContent, new TypeReference<Map<String, Object>>() {
             });
-            case "yaml" -> mapperYaml.readValue(fileContent, new TypeReference<Map<String, Object>>(){
+            case "yaml" -> mapperYaml.readValue(fileContent, new TypeReference<Map<String, Object>>() {
             });
             default -> throw new RuntimeException("Unsupported format");
         };
