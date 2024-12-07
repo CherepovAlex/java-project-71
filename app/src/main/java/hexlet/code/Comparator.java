@@ -4,37 +4,37 @@ import java.util.*;
 
 public class Comparator {
 
-    public static List<Map<String, Object>> compare(Map<String, Object> fileMap1, Map<String, Object> fileMap2) {
-        var list = new ArrayList<Map<String, Object>>();
-        var keys = new TreeSet<>();
-        keys.addAll(fileMap1.keySet());
-        keys.addAll(fileMap2.keySet());
-        for (var key : keys) {
-            var map = new HashMap<String, Object>();
-            Boolean fileMap1In = fileMap1.containsKey(key);
-            Boolean fileMap2In = fileMap2.containsKey(key);
-            Boolean file12Equals = null;
-            if (fileMap1In && fileMap2In) {
-                file12Equals = (fileMap1.get(key)).equals(fileMap2.get(key));
+    public static List<Map<String, Object>> compare(Map<String, Object> fileMapFirst, Map<String, Object> fileMapSecond) {
+        var listOfMaps = new ArrayList<Map<String, Object>>();
+        var keysOfAllMaps = new TreeSet<>();
+        keysOfAllMaps.addAll(fileMapFirst.keySet());
+        keysOfAllMaps.addAll(fileMapSecond.keySet());
+        for (var keyForCompare : keysOfAllMaps) {
+            var mapWithOrder = new HashMap<String, Object>();
+            Boolean fileMapFirstInclude = fileMapFirst.containsKey(keyForCompare);
+            Boolean fileMapSecondInlude = fileMapSecond.containsKey(keyForCompare);
+            Boolean fileMapFistSecobdEquals = null;
+            if (fileMapFirstInclude && fileMapSecondInlude) {
+                fileMapFistSecobdEquals = (fileMapFirst.get(keyForCompare)).equals(fileMapSecond.get(keyForCompare));
             }
-            if (fileMap1In && fileMap2In && file12Equals) {
-                map.put("  " + (String) key, fileMap1.get(key));
-                list.add(map);
+            if (fileMapFirstInclude && fileMapSecondInlude && fileMapFistSecobdEquals) {
+                mapWithOrder.put("  " + (String) keyForCompare, fileMapFirst.get(keyForCompare));
+                listOfMaps.add(mapWithOrder);
             }
-            if (fileMap1In && fileMap2In && !file12Equals) {
-                map.put("- " + (String) key, fileMap1.get(key));
-                map.put("+ " + (String) key, fileMap2.get(key));
-                list.add(map);
+            if (fileMapFirstInclude && fileMapSecondInlude && !fileMapFistSecobdEquals) {
+                mapWithOrder.put("- " + (String) keyForCompare, fileMapFirst.get(keyForCompare));
+                mapWithOrder.put("+ " + (String) keyForCompare, fileMapSecond.get(keyForCompare));
+                listOfMaps.add(mapWithOrder);
             }
-            if (fileMap1In && !fileMap2In) {
-                map.put("- " + (String) key, fileMap1.get(key));
-                list.add(map);
+            if (fileMapFirstInclude && !fileMapSecondInlude) {
+                mapWithOrder.put("- " + (String) keyForCompare, fileMapFirst.get(keyForCompare));
+                listOfMaps.add(mapWithOrder);
             }
-            if (!fileMap1In && fileMap2In) {
-                map.put("+ " + (String) key, fileMap2.get(key));
-                list.add(map);
+            if (!fileMapFirstInclude && fileMapSecondInlude) {
+                mapWithOrder.put("+ " + (String) keyForCompare, fileMapSecond.get(keyForCompare));
+                listOfMaps.add(mapWithOrder);
             }
         }
-        return list;
+        return listOfMaps;
     }
 }
