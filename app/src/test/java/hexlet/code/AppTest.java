@@ -27,7 +27,7 @@ class AppTest {
 
     @Test
     @DisplayName("'main' method works correctly")
-    void testMain() throws FileNotFoundException {
+    void testMain1() throws FileNotFoundException {
         var file1 = getAbsolutePath("file1." + "json").toString();
         var file2 = getAbsolutePath("file1." + "json").toString();
         App.main(file1, file2);
@@ -43,6 +43,14 @@ class AppTest {
         assertEquals(expectedResultJson, output.toString(StandardCharsets.UTF_8).trim());
     }
 
+    @Test
+    @DisplayName("'main' method works correctly")
+    void testMain3() throws FileNotFoundException {
+        var file1 = getAbsolutePath("file3." + "json").toString();
+        var file2 = getAbsolutePath("file4." + "json").toString();
+        App.main(file1, file2);
+        assertEquals(expectedResultJson, output.toString(StandardCharsets.UTF_8).trim());
+    }
 
     @AfterEach
     public void tearDown() {

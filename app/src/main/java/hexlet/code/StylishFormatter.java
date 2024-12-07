@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -7,13 +8,13 @@ import java.util.stream.Collectors;
 public class StylishFormatter {
 
     public static String format(List<Map<String, Object>> compareResult) {
-        String result = compareResult.stream()
+        return "{\n " + compareResult.stream()
                 .map(map -> map.entrySet().stream()
+                        .sorted(Comparator.comparing(Map.Entry::getKey))
                         .map(entry -> entry.getKey() + ": " + entry.getValue())
-                        .collect(Collectors.toList()))
-                        .map(list -> list.stream()
+                        .collect(Collectors.toList()).reversed())
+                .map(list -> list.stream()
                         .collect(Collectors.joining("\n ")))
-                        .collect(Collectors.joining("\n "));
-        return "{\n " + result + "\n}" + "\n";
+                .collect(Collectors.joining("\n ")) + "\n}";
     }
 }
