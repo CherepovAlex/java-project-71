@@ -8,3 +8,5 @@ Step1 record
 <a href="https://asciinema.org/a/JZGoXxEK7xqlUu1z3pyBgR1Mg" target="_blank"><img src="https://asciinema.org/a/JZGoXxEK7xqlUu1z3pyBgR1Mg.svg" /></a>
 Step2 record
 <a href="https://asciinema.org/a/yXOTQMotsirn8pdEVwiGRkTWj" target="_blank"><img src="https://asciinema.org/a/yXOTQMotsirn8pdEVwiGRkTWj.svg" /></a>
+Step3 record
+<a href="https://asciinema.org/a/O4ebo0VpasJSvSkgFNBqD0dtC" target="_blank"><img src="https://asciinema.org/a/O4ebo0VpasJSvSkgFNBqD0dtC.svg" /></a>
