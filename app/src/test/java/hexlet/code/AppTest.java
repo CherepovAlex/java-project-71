@@ -52,6 +52,15 @@ class AppTest {
         assertEquals(expectedResultJson, output.toString(StandardCharsets.UTF_8).trim());
     }
 
+    @Test
+    @DisplayName("'main' method works correctly")
+    void testMain4() throws FileNotFoundException {
+        var file1 = getAbsolutePath("file3." + "yaml").toString();
+        var file2 = getAbsolutePath("file4." + "yaml").toString();
+        App.main(file1, file2);
+        assertEquals(expectedResultJson, output.toString(StandardCharsets.UTF_8).trim());
+    }
+
     @AfterEach
     public void tearDown() {
         System.setOut(standardOut);

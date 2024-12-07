@@ -13,11 +13,11 @@ public class Comparator {
         var setOfAllKeys = new TreeSet<>();
         setOfAllKeys.addAll(fileMap1.keySet());
         setOfAllKeys.addAll(fileMap2.keySet());
+        Boolean file12Equals;
         for (var key : setOfAllKeys) {
             var maps = new HashMap<String, Object>();
             Boolean fileMap1Include = fileMap1.containsKey(key);
             Boolean fileMap2Include = fileMap2.containsKey(key);
-            Boolean file12Equals = null;
             if (fileMap1.get(key) == null || fileMap2.get(key) == null) {
                 file12Equals = fileMap1.get(key) == fileMap2.get(key);
             } else {
