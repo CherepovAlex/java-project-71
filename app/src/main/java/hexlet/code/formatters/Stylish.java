@@ -22,7 +22,9 @@ public class Stylish {
                 case "unchanged" -> str.append("    ").append(key).append(": ").append(value1).append("\n");
                 case "changed" -> str.append("  - ").append(key).append(": ").append(value1).
                         append("\n").append("  + ").append(key).append(": ").append(value2).append("\n");
-                default -> {return "Something went wrong for input: " + element.getValue();}
+                default -> {
+                    return "Something went wrong for input: " + element.getValue();
+                }
             }
         }
         str.append("}");

@@ -13,8 +13,12 @@ public class Parser {
 
     public static ObjectMapper mapperChecker(String checkInputFormat) throws Exception {
         switch (checkInputFormat) {
-            case "json" -> { return new ObjectMapper();}
-            case "yml", "yaml" -> { return new YAMLMapper();}
+            case "json" -> {
+                return new ObjectMapper();
+            }
+            case "yml", "yaml" -> {
+                return new YAMLMapper();
+            }
             default -> throw new Exception("Unsupported data format - " + checkInputFormat);
         }
     }

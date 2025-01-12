@@ -28,7 +28,9 @@ public class Plain {
                 case "changed" -> str.append("Property " + "'").append(key).append("'").append(" was updated. ")
                         .append("From ").append(valueResult1).append(" to ").append(valueResult2).append("\n");
                 case "unchanged" -> { }
-                default -> {return "Something went wrong for input: " + element.getValue();}
+                default -> {
+                    return "Something went wrong for input: " + element.getValue();
+                }
             }
         }
         return str.toString().trim();
