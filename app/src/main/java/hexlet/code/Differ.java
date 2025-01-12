@@ -23,6 +23,7 @@ public class Differ {
 
         return format(compareResult, format);
     }
+
     //читайем файл и переводим его в большую строку; не нужен отдельный класс
     private static String readFile(String filePath) {
         File file = new File(filePath);
