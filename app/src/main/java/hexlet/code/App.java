@@ -28,11 +28,11 @@ public class App implements Callable<Integer> {
         try {
             String formattedDiff = Differ.generate(filepath1, filepath2, formatName);
             System.out.println(formattedDiff);
+            return 0;
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            System.err.println("Error: " + e.getMessage());
             return 1;
         }
-        return 0;
     }
 
     public static void main(String... args) {

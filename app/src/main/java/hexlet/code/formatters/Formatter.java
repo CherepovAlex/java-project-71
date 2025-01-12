@@ -2,12 +2,11 @@ package hexlet.code.formatters;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import hexlet.code.KeyStatus;
-
 import java.util.Map;
 
 public class Formatter {
 
-    public static String choiceFormat(Map<String, KeyStatus> mapOfDiff, String style) throws JsonProcessingException {
+    public static String choiceFormat(Map<String, KeyStatus> mapOfDiff, String style) throws Exception {
         String result;
         switch (style) {
             case "stylish" -> {result = Stylish.stylishFormatter(mapOfDiff);}

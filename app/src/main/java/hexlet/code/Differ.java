@@ -1,10 +1,7 @@
 package hexlet.code;
 
 import hexlet.code.formatters.Formatter;
-import java.io.File;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -19,47 +16,49 @@ public class Differ {
         Path fullFilePath1 = getFullPath(filepath1);
         Path fullFilePath2 = getFullPath(filepath2);
 
-        String fileFormat1 = getDataFormat(String.valueOf(fullFilePath1));
-        String fileFormat2 = getDataFormat(String.valueOf(fullFilePath2));
+        String contentFile1 = readFileContent(fullFilePath1);
+        String contentFile2 = readFileContent(fullFilePath2);
 
-        String contentFile1 = Files.readString(fullFilePath1);
-        String contentFile2 = Files.readString(fullFilePath2);
-
-        Map<String, Object> fileMap1 = Parser.getDataStripes(contentFile1, fileFormat1);
-        Map<String, Object> fileMap2 = Parser.getDataStripes(contentFile2, fileFormat2);
-
-        Map<String, KeyStatus> compareResult = Comparator.compare(fileMap1, fileMap2);
-
-        if (compareResult.isEmpty()) {
+        if (contentFile1.isEmpty() || contentFile2.isEmpty()) {
             return "The files are empty.";
         }
 
-        String result = Formatter.choiceFormat(compareResult, formatName);
+        Map<String, Object> fileMap1 = parseContent(contentFile1, getDataFormat(fullFilePath1.toString()));
+        Map<String, Object> fileMap2 = parseContent(contentFile2, getDataFormat(fullFilePath2.toString()));
 
-        return result;
+        Map<String, KeyStatus> compareResult = FileComparator.compare(fileMap1, fileMap2);
+        return Formatter.choiceFormat(compareResult, formatName);
     }
 
-    //читайем файл и переводим его в большую строку; не нужен отдельный класс
-    private static String readFile(String filePath) {
-        File file = new File(filePath);
-        StringBuilder sb = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                sb.append(line).append("\n");
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return sb.toString();
+    private static String readFileContent(Path filePath) throws Exception {
+        return Files.readString(filePath);
+    }
+
+    private static Map<String, Object> parseContent(String content, String format) throws Exception {
+        return Parser.parseContent(content, format);
+    }
+    //    //читаем файл и переводим его в большую строку
+//    private static String readFile(String filePath) {
+//        File file = new File(filePath);
+//        StringBuilder sb = new StringBuilder();
+//        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+//            String line;
+//            while ((line = br.readLine()) != null) {
+//                sb.append(line).append("\n");
+//            }
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//        return sb.toString();
+//    }
+    private static String getDataFormat(String filePath) {
+        int index = filePath.lastIndexOf('.');
+        return index > 0 ? filePath.substring(index + 1) : "";
     }
 
     public static Path getFullPath(String path) {
         return Paths.get(path).toAbsolutePath().normalize();
     }
 
-    private static String getDataFormat(String filePath) {
-        int index = filePath.lastIndexOf('.');
-        return index > 0 ? filePath.substring(index + 1) : "";
-    }
+
 }
