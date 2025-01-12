@@ -1,71 +1,52 @@
 package hexlet.code;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import java.io.*;
-
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.skyscreamer.jsonassert.JSONAssert;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import static org.assertj.core.api.Assertions.assertThat;
 
-import static hexlet.code.App.getAbsolutePath;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+public final class DifferTest {
 
-public class DifferTest {
+    private static String resultJson;
+    private static String resultPlain;
+    private static String resultStylish;
 
-    private final PrintStream standardOut = System.out;
-    private final ByteArrayOutputStream output = new ByteArrayOutputStream();
-    private final String expectedResultStylish1 = "src/test/resources/expected_results/DiffTestResult1.txt";
-    private final String expectedResultStylish2 = "src/test/resources/expected_results/DiffTestResult2.txt";
-    StringBuilder sb1 = new StringBuilder();
-    StringBuilder sb2 = new StringBuilder();
+    @BeforeAll
+    public static void beforeAll() throws Exception {
+        resultJson = readExpectedResults("result_json.json");
+        resultPlain = readExpectedResults("result_plain.txt");
+        resultStylish = readExpectedResults("result_stylish.txt");
+    }
 
-    @BeforeEach
-    public void setUp() throws FileNotFoundException {
-        System.setOut(new PrintStream(output));
-        File file1 = new File(String.valueOf(getAbsolutePath(expectedResultStylish1)));
-        File file2 = new File(String.valueOf(getAbsolutePath(expectedResultStylish2)));
-        try (BufferedReader br = new BufferedReader(new FileReader(file1))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                sb1.append(line).append("\n");
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        try (BufferedReader br = new BufferedReader(new FileReader(file2))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                sb2.append(line).append("\n");
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    private static String readExpectedResults(String fileName) throws Exception {
+        return Files.readString(Path.of("src/test/resources/expected_results/" + fileName)).trim();
+    }
+
+    private static Path getExpectedResultsPath(String fileName) {
+        return Paths.get("src", "test", "resources", "expected_results", fileName)
+                .toAbsolutePath().normalize();
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"json", "yaml"})
-    public void testGenerateWithJsonOutput1(String inputFormat) throws Exception {
-        var file1 = getAbsolutePath("file1." + inputFormat).toString();
-        var file2 = getAbsolutePath("file2." + inputFormat).toString();
+    @ValueSource(strings = {"json", "yml"})
+    public void generateTest(String format) throws Exception {
+        String filePath1 = getExpectedResultsPath("file1." + format).toString();
+        String filePath2 = getExpectedResultsPath("file2." + format).toString();
 
-        String actualResult = Differ.generate(file1, file2, "stylish");
-        assertEquals(actualResult, sb1.toString());
-    }
+        assertThat(Differ.generate(filePath1, filePath2))
+                .isEqualTo(resultStylish);
 
-    @ParameterizedTest
-    @ValueSource(strings = {"json", "yaml"})
-    public void testGenerateWithJsonOutput2(String inputFormat) throws Exception {
-        var file1 = getAbsolutePath("file3." + inputFormat).toString();
-        var file2 = getAbsolutePath("file4." + inputFormat).toString();
+        assertThat(Differ.generate(filePath1, filePath2, "stylish"))
+                .isEqualTo(resultStylish);
 
-        String actualResult = Differ.generate(file1, file2, "stylish");
-        assertEquals(actualResult, sb2.toString());
-    }
+        assertThat(Differ.generate(filePath1, filePath2, "plain"))
+                .isEqualTo(resultPlain);
 
-    @AfterEach
-    public void tearDown() {
-        System.setOut(standardOut);
+        String actualJson = Differ.generate(filePath1, filePath2, "json");
+        JSONAssert.assertEquals(resultJson, actualJson, false);
     }
 }

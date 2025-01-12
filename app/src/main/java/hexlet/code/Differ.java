@@ -1,27 +1,42 @@
 package hexlet.code;
 
+import hexlet.code.formatters.Formatter;
 import java.io.File;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Map;
 
 public class Differ {
-    // оркестратор
-    public static String generate(String filepath1, String filepath2, String format) throws IOException {
-        String content1 = readFile(filepath1);
-        String content2 = readFile(filepath2);
+    public static String generate(String filePath1, String filePath2) throws Exception {
+        return generate(filePath1, filePath2, "stylish");
+    }
 
-        String fileFormat1 = getFileType(filepath1);
-        String fileFormat2 = getFileType(filepath2);
+    public static String generate(String filepath1, String filepath2, String formatName) throws Exception {
+        Path fullFilePath1 = getFullPath(filepath1);
+        Path fullFilePath2 = getFullPath(filepath2);
 
-        Map<String, Object> fileMap1 = Parser.parse(content1, fileFormat1);
-        Map<String, Object> fileMap2 = Parser.parse(content2, fileFormat2);
+        String fileFormat1 = getDataFormat(String.valueOf(fullFilePath1));
+        String fileFormat2 = getDataFormat(String.valueOf(fullFilePath2));
 
-        List<Map<String, Object>> compareResult = Comparator.compare(fileMap1, fileMap2);
+        String contentFile1 = Files.readString(fullFilePath1);
+        String contentFile2 = Files.readString(fullFilePath2);
 
-        return format(compareResult, format);
+        Map<String, Object> fileMap1 = Parser.getDataStripes(contentFile1, fileFormat1);
+        Map<String, Object> fileMap2 = Parser.getDataStripes(contentFile2, fileFormat2);
+
+        Map<String, KeyStatus> compareResult = Comparator.compare(fileMap1, fileMap2);
+
+        if (compareResult.isEmpty()) {
+            return "The files are empty.";
+        }
+
+        String result = Formatter.choiceFormat(compareResult, formatName);
+
+        return result;
     }
 
     //читайем файл и переводим его в большую строку; не нужен отдельный класс
@@ -38,17 +53,13 @@ public class Differ {
         }
         return sb.toString();
     }
-    //формат хранения данных; утилитарный метод; возвращает тип файла - расширение: json, yml, yaml
-    private static String getFileType(String filePath) {
-        String[] arr = filePath.split("\\.");
-        return arr[arr.length - 1];
+
+    public static Path getFullPath(String path) {
+        return Paths.get(path).toAbsolutePath().normalize();
     }
 
-    public static String format(List<Map<String, Object>> compareResult, String format) {
-        //TODO дописать для других форматов
-        return switch (format) {
-            case "stylish" -> StylishFormatter.format(compareResult);
-            default -> throw new RuntimeException("Unsupported format");
-        };
+    private static String getDataFormat(String filePath) {
+        int index = filePath.lastIndexOf('.');
+        return index > 0 ? filePath.substring(index + 1) : "";
     }
 }
