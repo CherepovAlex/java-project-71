@@ -1,3 +1,11 @@
+### <b><i>Difference calculator</i></b>
+### <b>Description</b>:<br>
+An educational project that is a utility for finding differences in configuration files..
+### <b>Supported input formats</b>: .json .yml
+### <b><i>Ganeral features:</i></b>
+The program shows where code was added, deleted, or edited. It can compare files of both the same format and different formats.:
+Report generation in plain text, tree, and JSON formats.
+
 ### Hexlet tests and linter status :
 [![Actions Status](https://github.com/CherepovAlex/java-project-71/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/CherepovAlex/java-project-71/actions)
 [![Java CI](https://github.com/CherepovAlex/java-project-71/actions/workflows/main.yml/badge.svg)](https://github.com/CherepovAlex/java-project-71/actions/workflows/main.yml)
