@@ -2,7 +2,7 @@ package hexlet.code;
 
 import org.junit.jupiter.api.Test;
 import picocli.CommandLine;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AppTest {
 

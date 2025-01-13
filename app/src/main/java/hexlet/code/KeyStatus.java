@@ -1,6 +1,6 @@
 package hexlet.code;
 
-public class KeyStatus {
+public final class KeyStatus {
 
     private final String status;
     private final Object value1;
