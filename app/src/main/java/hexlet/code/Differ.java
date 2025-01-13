@@ -37,20 +37,7 @@ public class Differ {
     private static Map<String, Object> parseContent(String content, String format) throws Exception {
         return Parser.parseContent(content, format);
     }
-    //    //читаем файл и переводим его в большую строку
-//    private static String readFile(String filePath) {
-//        File file = new File(filePath);
-//        StringBuilder sb = new StringBuilder();
-//        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-//            String line;
-//            while ((line = br.readLine()) != null) {
-//                sb.append(line).append("\n");
-//            }
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        return sb.toString();
-//    }
+
     private static String getDataFormat(String filePath) {
         int index = filePath.lastIndexOf('.');
         return index > 0 ? filePath.substring(index + 1) : "";
@@ -59,6 +46,4 @@ public class Differ {
     public static Path getFullPath(String path) {
         return Paths.get(path).toAbsolutePath().normalize();
     }
-
-
 }

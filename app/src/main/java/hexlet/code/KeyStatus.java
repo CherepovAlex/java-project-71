@@ -1,6 +1,5 @@
 package hexlet.code;
 
-// представление статуса ключа в сравниваемом результате
 public class KeyStatus {
 
     private final String status;
