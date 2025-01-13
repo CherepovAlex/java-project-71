@@ -5,8 +5,8 @@
 <br>
 <h2><b>Project 2: Comparator</b></h2>
 Step1 record
-<a href="https://asciinema.org/a/JZGoXxEK7xqlUu1z3pyBgR1Mg" target="_blank"><img src="https://asciinema.org/a/JZGoXxEK7xqlUu1z3pyBgR1Mg.svg" /></a>
+<a href="https://asciinema.org/a/cP77eqc96c3ua01PSu9hIRfYY" target="_blank"><img src="https://asciinema.org/a/cP77eqc96c3ua01PSu9hIRfYY.svg" /></a>
 Step2 record
-<a href="https://asciinema.org/a/yXOTQMotsirn8pdEVwiGRkTWj" target="_blank"><img src="https://asciinema.org/a/yXOTQMotsirn8pdEVwiGRkTWj.svg" /></a>
+<a href="https://asciinema.org/a/s7GLivLUR3fTkj6jWf5oTPzB2" target="_blank"><img src="https://asciinema.org/a/s7GLivLUR3fTkj6jWf5oTPzB2.svg" /></a>
 Step3 record
-<a href="https://asciinema.org/a/O4ebo0VpasJSvSkgFNBqD0dtC" target="_blank"><img src="https://asciinema.org/a/O4ebo0VpasJSvSkgFNBqD0dtC.svg" /></a>
+<a href="https://asciinema.org/a/Yv48JoAvkPdiAv7bP5peLNYKa" target="_blank"><img src="https://asciinema.org/a/Yv48JoAvkPdiAv7bP5peLNYKa.svg" /></a>
