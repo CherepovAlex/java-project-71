@@ -4,9 +4,9 @@
 <a href="https://codeclimate.com/github/CherepovAlex/java-project-71/maintainability"><img src="https://api.codeclimate.com/v1/badges/6e08f1174a9465138625/maintainability" /></a>
 <br>
 <h2><b>Project 2: Comparator</b></h2>
-Step1 record
-<a href="https://asciinema.org/a/JZGoXxEK7xqlUu1z3pyBgR1Mg" target="_blank"><img src="https://asciinema.org/a/JZGoXxEK7xqlUu1z3pyBgR1Mg.svg" /></a>
-Step2 record
-<a href="https://asciinema.org/a/yXOTQMotsirn8pdEVwiGRkTWj" target="_blank"><img src="https://asciinema.org/a/yXOTQMotsirn8pdEVwiGRkTWj.svg" /></a>
-Step3 record
-<a href="https://asciinema.org/a/O4ebo0VpasJSvSkgFNBqD0dtC" target="_blank"><img src="https://asciinema.org/a/O4ebo0VpasJSvSkgFNBqD0dtC.svg" /></a>
+Step6 record
+<a href="https://asciinema.org/a/cP77eqc96c3ua01PSu9hIRfYY" target="_blank"><img src="https://asciinema.org/a/cP77eqc96c3ua01PSu9hIRfYY.svg" /></a>
+Step8 record
+<a href="https://asciinema.org/a/s7GLivLUR3fTkj6jWf5oTPzB2" target="_blank"><img src="https://asciinema.org/a/s7GLivLUR3fTkj6jWf5oTPzB2.svg" /></a>
+Step9 record
+<a href="https://asciinema.org/a/Yv48JoAvkPdiAv7bP5peLNYKa" target="_blank"><img src="https://asciinema.org/a/Yv48JoAvkPdiAv7bP5peLNYKa.svg" /></a>
