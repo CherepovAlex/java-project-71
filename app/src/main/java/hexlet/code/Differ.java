@@ -6,9 +6,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
+import java.util.List;
 
 public class Differ {
-    public static String generate(String filePath1, String filePath2) throws Exception {
+    public static String  generate(String filePath1, String filePath2) throws Exception {
         return generate(filePath1, filePath2, "stylish");
     }
 
@@ -19,15 +20,12 @@ public class Differ {
         String contentFile1 = readFileContent(fullFilePath1);
         String contentFile2 = readFileContent(fullFilePath2);
 
-        if (contentFile1.isEmpty() || contentFile2.isEmpty()) {
-            return "The files are empty.";
-        }
-
         Map<String, Object> fileMap1 = parseContent(contentFile1, getDataFormat(fullFilePath1.toString()));
         Map<String, Object> fileMap2 = parseContent(contentFile2, getDataFormat(fullFilePath2.toString()));
 
-        Map<String, KeyStatus> compareResult = FileComparator.compare(fileMap1, fileMap2);
-        return Formatter.choiceFormat(compareResult, formatName);
+        List<KeyStatus> diff = FileComparator.compare(fileMap1, fileMap2);
+
+        return Formatter.choiceFormat(diff, formatName);
     }
 
     private static String readFileContent(Path filePath) throws Exception {

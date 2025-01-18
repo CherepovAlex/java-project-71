@@ -3,11 +3,11 @@ package hexlet.code;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.skyscreamer.jsonassert.JSONAssert;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public final class DifferTest {
 
@@ -26,16 +26,16 @@ public final class DifferTest {
         return Files.readString(Path.of("src/test/resources/expected_results/" + fileName)).trim();
     }
 
-    private static Path getExpectedResultsPath(String fileName) {
-        return Paths.get("src", "test", "resources", "expected_results", fileName)
+    private static Path getFixturePath(String fileName) {
+        return Paths.get("src", "test", "resources", "fixtures", fileName)
                 .toAbsolutePath().normalize();
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"json", "yml"})
     public void generateTest(String format) throws Exception {
-        String filePath1 = getExpectedResultsPath("file1." + format).toString();
-        String filePath2 = getExpectedResultsPath("file2." + format).toString();
+        String filePath1 = getFixturePath("filepath1." + format).toString();
+        String filePath2 = getFixturePath("filepath2." + format).toString();
 
         assertThat(Differ.generate(filePath1, filePath2))
                 .isEqualTo(resultStylish);
@@ -47,6 +47,6 @@ public final class DifferTest {
                 .isEqualTo(resultPlain);
 
         String actualJson = Differ.generate(filePath1, filePath2, "json");
-        JSONAssert.assertEquals(resultJson, actualJson, false);
+        assertEquals(resultJson, actualJson);
     }
 }

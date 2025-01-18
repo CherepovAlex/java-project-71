@@ -19,7 +19,8 @@ public class Parser {
             case "yml", "yaml" -> {
                 return new YAMLMapper();
             }
-            default -> throw new Exception("Unsupported data format - " + checkInputFormat);
+            default -> throw new Exception("Unsupported data format - "
+                    + checkInputFormat + ". Supported formats: json, yml, yaml");
         }
     }
 }

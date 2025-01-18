@@ -31,7 +31,7 @@ public final class App implements Callable<Integer> {
     @Override
     public Integer call() throws Exception {
         try {
-            String formattedDiff = Differ.generate(filepath1, filepath2, formatName);
+            String formattedDiff  = Differ.generate(filepath1, filepath2, formatName);
             System.out.println(formattedDiff);
             return 0;
         } catch (Exception e) {
@@ -39,6 +39,4 @@ public final class App implements Callable<Integer> {
             return 1;
         }
     }
-
-
 }

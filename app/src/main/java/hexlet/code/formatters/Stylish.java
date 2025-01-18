@@ -1,20 +1,18 @@
 package hexlet.code.formatters;
 
 import hexlet.code.KeyStatus;
-import java.util.Map;
+import java.util.List;
 
 public class Stylish {
 
-    public static String stylishFormatter(Map<String, KeyStatus> mapOfDiff) {
-
+    public static String stylishFormatter(List<KeyStatus> diff) {
         StringBuilder str = new StringBuilder();
         str.append("{\n");
-        for (Map.Entry<String, KeyStatus> element : mapOfDiff.entrySet()) {
-
-            String status = element.getValue().getStatus();
+        for (KeyStatus element : diff) {
+            String status = element.getStatus();
             String key = element.getKey();
-            var value1 = element.getValue().getValue1();
-            var value2 = element.getValue().getValue2();
+            var value1 = element.getValue1();
+            var value2 = element.getValue2();
 
             switch (status) {
                 case "deleted" -> str.append("  - ").append(key).append(": ").append(value1).append("\n");
@@ -23,7 +21,7 @@ public class Stylish {
                 case "changed" -> str.append("  - ").append(key).append(": ").append(value1).
                         append("\n").append("  + ").append(key).append(": ").append(value2).append("\n");
                 default -> {
-                    return "Something went wrong for input: " + element.getValue();
+                    return "Something went wrong for input: " + element;
                 }
             }
         }
